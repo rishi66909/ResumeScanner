@@ -1,0 +1,5 @@
+package com.resumescanner.dto;
+
+public class ScanResultDTO {
+
+}
