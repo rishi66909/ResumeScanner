@@ -1,0 +1,32 @@
+# IDE
+.vscode/
+.idea/
+.metadata/
+*.iml
+*.ipr
+*.iws
+*.class
+
+# Maven
+target/
+.classpath
+.project
+.settings/
+*.jar.original
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if using npm)
+node_modules/
+npm-debug.log
+
+# Environment
+.env.local
+.env.*.local
+.env
+
+# Eclipse
+bin/
+.factorypath

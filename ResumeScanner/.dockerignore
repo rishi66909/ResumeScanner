@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.vscode
+.idea
+*.iml
+*.class
+
+# Maven
+target/
+*.jar.original
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+HELP.md
+
+# Node (if using npm)
+node_modules
+npm-debug.log
+
+# Environment
+.env.local
+.env.*.local
