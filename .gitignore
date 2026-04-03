@@ -17,6 +17,7 @@ target/
 # OS
 .DS_Store
 Thumbs.db
+unwanted/
 
 # Node (if using npm)
 node_modules/
