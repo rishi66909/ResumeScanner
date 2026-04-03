@@ -11,10 +11,15 @@ node_modules
 dist
 dist-ssr
 *.local
+<<<<<<< HEAD
 oracleJdk-26
 
 # Editor directories and files
 .metadata/
+=======
+
+# Editor directories and files
+>>>>>>> 3f9a27c0c44acf70159ef9fbc37e479ab63f0b60
 .vscode/*
 !.vscode/extensions.json
 .idea

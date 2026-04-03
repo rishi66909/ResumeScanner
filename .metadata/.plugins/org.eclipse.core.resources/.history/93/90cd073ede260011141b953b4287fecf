@@ -1,0 +1,18 @@
+# Server Configuration
+server.port=8081
+
+# MySQL Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/resume_scanner
+spring.datasource.username=root
+spring.datasource.password=Rishi@66909
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# H2 Console (optional - you can remove this if you don't need it)
+# spring.h2.console.enabled=true
+# spring.h2.console.path=/h2-console

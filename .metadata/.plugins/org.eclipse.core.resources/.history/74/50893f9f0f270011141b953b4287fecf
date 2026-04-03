@@ -1,0 +1,65 @@
+package com.resumescanner.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdfdocument.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.io.RandomAccessFile;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
+
+@Service
+public class PDFParsingService {
+
+    public String extractTextFromPDF(MultipartFile file) throws Exception {
+        StringBuilder text = new StringBuilder();
+        
+        try (InputStream inputStream = file.getInputStream()) {
+            File tempFile = File.createTempFile("resume_", ".pdf");
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            
+            try (java.io.FileOutputStream fos = new java.io.FileOutputStream(tempFile);
+                 InputStream is = file.getInputStream()) {
+                while ((bytesRead = is.read(buffer)) != -1) {
+                    fos.write(buffer, 0, bytesRead);
+                }
+            }
+            
+            try (RandomAccessFile raf = new RandomAccessFile(tempFile, "r");
+                 PDFParser parser = new PDFParser(raf);
+                 PDDocument pdfDocument = parser.getPDDocument()) {
+                
+                PDFTextStripper stripper = new PDFTextStripper();
+                text.append(stripper.getText(pdfDocument));
+            }
+            
+            tempFile.delete();
+        }
+        
+        return text.toString();
+    }
+
+    public String extractTextFromDOCX(MultipartFile file) throws Exception {
+        StringBuilder text = new StringBuilder();
+        
+        try (InputStream inputStream = file.getInputStream();
+             XWPFDocument document = new XWPFDocument(inputStream)) {
+            
+            List<XWPFParagraph> paragraphs = document.getParagraphs();
+            for (XWPFParagraph paragraph : paragraphs) {
+                String paraText = paragraph.getText();
+                if (paraText != null && !paraText.trim().isEmpty()) {
+                    text.append(paraText).append("\n");
+                }
+            }
+        }
+        
+        return text.toString();
+    }
+}
