@@ -13,6 +13,7 @@ target/
 .project
 .settings/
 *.jar.original
+.unwanted/
 
 # OS
 .DS_Store
