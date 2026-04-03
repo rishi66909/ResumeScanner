@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+oracleJdk-26
 
 # Editor directories and files
 .vscode/*
