@@ -58,7 +58,7 @@ function App() {
   const fetchAllScans = async () => {
     try {
       setError('')
-      const response = await fetch(`${API_BASE}/all`)
+      const response = await fetch(`${API_BASE}/resume/all`)
       if (!response.ok) throw new Error('Unable to load scan history.')
       const data = await response.json()
       setScans(Array.isArray(data) ? data : [])
@@ -86,7 +86,7 @@ function App() {
 
     try {
       setLoading(true)
-      const response = await fetch(`${API_BASE}/scan`, {
+      const response = await fetch(`${API_BASE}/resume/scan`, {
         method: 'POST',
         body: formData,
       })
@@ -112,7 +112,7 @@ function App() {
 
     try {
       setLoading(true)
-      const response = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' })
+      const response = await fetch(`${API_BASE}/resume/${id}`, { method: 'DELETE' })
       if (!response.ok) throw new Error('Failed to delete the scan.')
       if (scanResult?.id === id) setScanResult(null)
       await fetchAllScans()
